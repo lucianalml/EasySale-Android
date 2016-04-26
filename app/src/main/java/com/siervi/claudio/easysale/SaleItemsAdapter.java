@@ -9,17 +9,19 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import io.realm.Realm;
 
 /**
- * Created by Claudio on 09/04/2016.
+ * Classe para listar os produtos disponíveis e adicioná-los em uma venda
  */
-public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHolder> {
+
+public class SaleItemsAdapter extends RecyclerView.Adapter<SaleItemsAdapter.ViewHolder> {
 
     public List<Sale> saleList = new ArrayList<Sale>();
     private List<Product> productList;
     private int idSale = 1;
-    public ProductsAdapter(List<Product> products) {
+
+
+    public SaleItemsAdapter(List<Product> products) {
         this.productList = products;
     }
 
@@ -27,7 +29,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_list_products, parent, false);
+                .inflate(R.layout.sale_product_item, parent, false);
         ViewHolder holder = new ViewHolder(v);
         return holder;
     }

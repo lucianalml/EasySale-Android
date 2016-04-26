@@ -8,18 +8,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import io.realm.Realm;
-
 /**
- * Created by Claudio on 15/04/2016.
+ * Classe para listar os itens vendidos
  */
-public class SalesAdapter extends RecyclerView.Adapter<SalesAdapter.ViewHolder> {
+
+public class ReportSalesAdapter extends RecyclerView.Adapter<ReportSalesAdapter.ViewHolder> {
 
     private List<Sale> saleList;
 
-    private Realm realm; // Verificar se essa variável é util
-
-    public SalesAdapter(List<Sale> sales) {
+    public ReportSalesAdapter(List<Sale> sales) {
         this.saleList = sales;
     }
 
@@ -27,7 +24,7 @@ public class SalesAdapter extends RecyclerView.Adapter<SalesAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_sales, parent, false);
+                .inflate(R.layout.report_sale_item, parent, false);
 
         ViewHolder holder = new ViewHolder(v);
 

@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     // methods
     public void productRegistrationActivity(View view) {
-        Intent intent = new Intent(this, ProductRegistrationActivity.class);
+        Intent intent = new Intent(this, AddProductActivity.class);
         startActivity(intent);
     }
 

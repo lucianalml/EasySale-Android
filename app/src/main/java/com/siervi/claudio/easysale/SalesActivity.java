@@ -17,7 +17,7 @@ public class SalesActivity extends AppCompatActivity {
 
     private List<Product> product;
     private RecyclerView mRecyclerView;
-    private ProductsAdapter mProductAdapter;
+    private SaleItemsAdapter mSaleItemsAdapter;
     private Realm realm;
 
     Button btnConfirmSale;
@@ -30,28 +30,30 @@ public class SalesActivity extends AppCompatActivity {
         setUI();
         setActions();
 
+// Recupera todos os produtos cadastrados
         realm = Realm.getDefaultInstance();
-
         product = realm.where(Product.class).findAll();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.rcv_sales);
 
-        mProductAdapter = new ProductsAdapter(product);
-
+// Determina os atributos da RecyclerView
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(mProductAdapter);
+
+// Atribui o SaleItemsAdapter para a RecycleView
+        mSaleItemsAdapter = new SaleItemsAdapter(product);
+        mRecyclerView.setAdapter(mSaleItemsAdapter);
 
   }
 
-    // address buttons id
+// Referencia os elementos do layout
     private void setUI(){
+
         btnConfirmSale = (Button) findViewById(R.id.btn_confirmSale );
+        mRecyclerView = (RecyclerView) findViewById(R.id.rcv_sales);
     }
 
-    // set buttons methods
+// Determina ações dos botões
     private void setActions(){
         btnConfirmSale.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -65,22 +67,23 @@ public class SalesActivity extends AppCompatActivity {
     public void confirmSale(View view) {
 
         realm.beginTransaction();
-        for (int i = 0; i < mProductAdapter.saleList.size(); i++) {
+        for (int i = 0; i < mSaleItemsAdapter.saleList.size(); i++) {
             Sale sale = realm.createObject(Sale.class);
+
 // Recupera o próximo id
             sale.setId(realm.where(Sale.class).max("id").intValue() + 1);
-            sale.setQuantity(mProductAdapter.saleList.get(i).getQuantity());
-            sale.setProduct(mProductAdapter.saleList.get(i).getProduct());
+            sale.setQuantity(mSaleItemsAdapter.saleList.get(i).getQuantity());
+            sale.setProduct(mSaleItemsAdapter.saleList.get(i).getProduct());
 
         }
+
         realm.commitTransaction();
         Toast.makeText(SalesActivity.this, "Dados Salvos",Toast.LENGTH_SHORT).show();
 
-        // Limpa reinicia a venda
-        mProductAdapter.saleList.clear();
-        mProductAdapter.notifyDataSetChanged();
+// Limpa a lista de produtos e reinicia a venda
+        mSaleItemsAdapter.saleList.clear();
+        mSaleItemsAdapter.notifyDataSetChanged();
     }
-
 
     @Override
     protected void onDestroy() {

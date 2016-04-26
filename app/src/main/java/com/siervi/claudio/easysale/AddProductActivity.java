@@ -10,7 +10,11 @@ import android.widget.Toast;
 
 import io.realm.Realm;
 
-public class ProductRegistrationActivity extends AppCompatActivity {
+/**
+ * Create new products
+ */
+
+public class AddProductActivity extends AppCompatActivity {
 
     Button btnRegisterProduct;
     EditText edtProductName, edtProductPrice;
@@ -19,7 +23,7 @@ public class ProductRegistrationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_registration);
+        setContentView(R.layout.activity_add_product);
         setUI();
         setActions();
 
@@ -60,7 +64,7 @@ public class ProductRegistrationActivity extends AppCompatActivity {
             realm.commitTransaction();
 
             Product produto = realm.where(Product.class).equalTo("name",edtProductName.getText().toString()).findFirst();
-            Toast.makeText(ProductRegistrationActivity.this, produto.getName() + " cadastrado.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddProductActivity.this, produto.getName() + " cadastrado.", Toast.LENGTH_SHORT).show();
 
 
         } catch (Exception e){

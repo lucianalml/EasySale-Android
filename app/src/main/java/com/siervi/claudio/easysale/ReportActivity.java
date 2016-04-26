@@ -14,7 +14,7 @@ public class ReportActivity extends AppCompatActivity {
 
     private List<Sale> sales;
     private RecyclerView mRecyclerView;
-    private SalesAdapter mSaleAdapter;
+    private ReportSalesAdapter mSaleAdapter;
     private Realm realm;
 
     @Override
@@ -31,7 +31,7 @@ public class ReportActivity extends AppCompatActivity {
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rcv_sales_report);
 
-        mSaleAdapter = new SalesAdapter(sales);
+        mSaleAdapter = new ReportSalesAdapter(sales);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);

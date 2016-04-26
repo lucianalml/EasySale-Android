@@ -9,16 +9,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".EasySale">
-        <activity android:name="com.siervi.claudio.easysale.MainActivity"> <!-- Parent Activity -->
+        <activity android:name=".MainActivity"> <!-- Parent Activity -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.siervi.claudio.easysale.SalesActivity" />
-        <activity android:name="com.siervi.claudio.easysale.ProductRegistrationActivity" />
-        <activity android:name="com.siervi.claudio.easysale.ReportActivity"
-            android:parentActivityName="com.siervi.claudio.easysale.MainActivity"/>
+        <activity android:name=".SalesActivity" />
+        <activity android:name=".AddProductActivity" />
+        <activity android:name=".ReportActivity"
+            android:parentActivityName=".MainActivity"/>
 
     </application>
 
