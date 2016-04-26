@@ -27,8 +27,7 @@
     <string name="st_btn_sum">+</string>
     <string name="st_topReport">Relatório de Vendas</string>
 
-
-
-
+    <string name="tit_sales_report">Relatório de Vendas</string>
+    <string name="tit_list_products">Produtos Cadastrados</string>
 
 </resources>
