@@ -17,7 +17,7 @@ import io.realm.Realm;
 
 public class SalesActivity extends AppCompatActivity {
 
-    private List<Product> product;
+    private List<Product> products;
     private RecyclerView mRecyclerView;
     private SaleItemsAdapter mSaleItemsAdapter;
     private Realm realm;
@@ -34,7 +34,7 @@ public class SalesActivity extends AppCompatActivity {
 
 // Recupera todos os produtos cadastrados
         realm = Realm.getDefaultInstance();
-        product = realm.where(Product.class).findAll();
+        products = realm.where(Product.class).findAll();
 
 
 // Determina os atributos da RecyclerView
@@ -43,14 +43,13 @@ public class SalesActivity extends AppCompatActivity {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
 // Atribui o SaleItemsAdapter para a RecycleView
-        mSaleItemsAdapter = new SaleItemsAdapter(product);
+        mSaleItemsAdapter = new SaleItemsAdapter(products);
         mRecyclerView.setAdapter(mSaleItemsAdapter);
 
   }
 
 // Referencia os elementos do layout
     private void setUI(){
-
         btnConfirmSale = (Button) findViewById(R.id.btn_confirmSale );
         mRecyclerView = (RecyclerView) findViewById(R.id.rcv_sales);
     }
@@ -71,8 +70,26 @@ public class SalesActivity extends AppCompatActivity {
 // Exibe o alerta de confirmação
 
         AlertDialog.Builder builder = new AlertDialog.Builder(SalesActivity.this);
-        builder.setTitle("Confirmação");
-        builder.setMessage("Deseja salvar a venda com os itens.... ? ");
+        builder.setTitle("Confirmar a venda?");
+
+        String mensagem = "";
+        double valorItem, valorTotal = 0;
+        for (int i = 0; i < mSaleItemsAdapter.saleList.size(); i++) {
+
+// Calcula o valor cada item
+            valorItem = mSaleItemsAdapter.saleList.get(i).getProduct().getPrice() * mSaleItemsAdapter.saleList.get(i).getQuantity();
+
+// Calcula o valor total da compra
+            valorTotal = valorTotal + valorItem;
+
+// Monta a mensagem de confirmação
+            mensagem = mensagem + String.valueOf(mSaleItemsAdapter.saleList.get(i).getQuantity()) + " " +
+                        mSaleItemsAdapter.saleList.get(i).getProduct().getName() +
+                        " R$ " + String.valueOf(valorItem) + "\n";
+        }
+        mensagem = mensagem + "\n Total R$: " + String.valueOf(valorTotal);
+
+        builder.setMessage(mensagem);
 
 // Add the buttons
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -106,7 +123,6 @@ public class SalesActivity extends AppCompatActivity {
             sale.setId(saleId);
             sale.setQuantity(mSaleItemsAdapter.saleList.get(i).getQuantity());
             sale.setProduct(mSaleItemsAdapter.saleList.get(i).getProduct());
-
         }
 
         realm.commitTransaction();
