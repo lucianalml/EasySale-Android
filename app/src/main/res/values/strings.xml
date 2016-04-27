@@ -29,5 +29,8 @@
 
     <string name="tit_sales_report">Relatório de Vendas</string>
     <string name="tit_list_products">Produtos Cadastrados</string>
+    <string name="tit_add_products">Adicionar Produto</string>
+    <string name="tit_edit_products">Editar Produto</string>
+    <string name="tit_vendas">Registro de Vendas</string>
 
 </resources>

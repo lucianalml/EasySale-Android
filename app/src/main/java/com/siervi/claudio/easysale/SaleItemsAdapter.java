@@ -61,6 +61,7 @@ public class SaleItemsAdapter extends RecyclerView.Adapter<SaleItemsAdapter.View
             }
         });
     }
+
     // verify if there are sales
     private Sale recoverSale(String name) {
         Sale sale = null;
@@ -99,6 +100,7 @@ public class SaleItemsAdapter extends RecyclerView.Adapter<SaleItemsAdapter.View
 
         notifyItemChanged(clickedPos);
     }
+
     // return sale position
     private int recoverItemSale(String name) {
         int i;

@@ -3,7 +3,6 @@ package com.siervi.claudio.easysale;
 import java.util.Date;
 
 import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by Claudio on 15/04/2016.
@@ -11,7 +10,7 @@ import io.realm.annotations.PrimaryKey;
 
 // table sale
 public class Sale extends RealmObject {
-    @PrimaryKey
+
     private int id;
 
     private Product product;

@@ -1,5 +1,6 @@
 package com.siervi.claudio.easysale;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,24 +11,29 @@ import android.widget.Toast;
 
 import io.realm.Realm;
 
-/**
- * Create new products
- */
-
-public class AddProductActivity extends AppCompatActivity {
+public class EditProductActivity extends AppCompatActivity {
 
     ImageButton btnRegisterProduct;
     EditText edtProductName, edtProductPrice;
     private Realm realm;
 
+    String nome, preco;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_product);
+        setContentView(R.layout.activity_edit_product);
+
+// Recupera dados do produto para edição
+        Intent intent = getIntent();
+        nome = intent.getStringExtra("NOME");
+        preco = intent.getStringExtra("PRECO");
+
         setUI();
         setActions();
 
         realm = Realm.getDefaultInstance();
+
     }
 
     @Override
@@ -35,13 +41,19 @@ public class AddProductActivity extends AppCompatActivity {
         super.onDestroy();
         realm.close();
     }
-    // define buttons
+
+// Atribui os elementos da tela
     private void setUI() {
         btnRegisterProduct = (ImageButton) findViewById(R.id.btn_RegisterProduct);
         edtProductName = (EditText) findViewById(R.id.edt_ProductName);
         edtProductPrice = (EditText) findViewById(R.id.edt_ProductPrice);
+
+// Atribui os dados
+        edtProductName.setText(nome);
+        edtProductPrice.setText(preco);
     }
 
+// Atribui as ações
     private void setActions() {
         btnRegisterProduct.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -50,30 +62,30 @@ public class AddProductActivity extends AppCompatActivity {
         });
     }
 
-    // save a new object
+// Salva as alterações
     private  void registerProduct(View view){
         try{
 
+// Recupera o produto do banco de dados
+            Product product = realm.where(Product.class).equalTo("name",nome).findFirst();
+
             realm.beginTransaction();
 
-            Product product = realm.createObject(Product.class);
-
+// Atualiza os dados
             product.setName(edtProductName.getText().toString());
             product.setPrice(Double.parseDouble(edtProductPrice.getText().toString()));
 
             realm.commitTransaction();
 
             Product produto = realm.where(Product.class).equalTo("name",edtProductName.getText().toString()).findFirst();
-            Toast.makeText(AddProductActivity.this, produto.getName() + " cadastrado.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProductActivity.this, produto.getName() + " atualizado.", Toast.LENGTH_SHORT).show();
 
+            finish();
 
         } catch (Exception e){
             Log.e("Realm Error", "error", e);
         }
 
-// clean view
-    edtProductName.setText("");
-    edtProductPrice.setText("");
     }
 
 }

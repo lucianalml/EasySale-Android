@@ -1,11 +1,10 @@
 package com.siervi.claudio.easysale;
 
 import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
 
 // table product
 public class Product extends RealmObject {
-    @PrimaryKey
+
     private String name;
 
     private double price;

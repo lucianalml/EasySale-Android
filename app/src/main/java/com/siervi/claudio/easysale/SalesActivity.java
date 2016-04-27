@@ -1,6 +1,8 @@
 package com.siervi.claudio.easysale;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -66,19 +68,49 @@ public class SalesActivity extends AppCompatActivity {
 // Salva os itens vendidos no banco de dados
     public void confirmSale(View view) {
 
+// Exibe o alerta de confirmação
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(SalesActivity.this);
+        builder.setTitle("Confirmação");
+        builder.setMessage("Deseja salvar a venda com os itens.... ? ");
+
+// Add the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                salvarVenda();
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+// Create the AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
+
+    private void salvarVenda() {
+
+        // Recupera o próximo id
+        int saleId = 1;
+        if (! realm.where(Sale.class).findAll().isEmpty() ) {
+            saleId = realm.where(Sale.class).max("id").intValue() + 1;
+        }
+
         realm.beginTransaction();
         for (int i = 0; i < mSaleItemsAdapter.saleList.size(); i++) {
             Sale sale = realm.createObject(Sale.class);
-
-// Recupera o próximo id
-            sale.setId(realm.where(Sale.class).max("id").intValue() + 1);
+            sale.setId(saleId);
             sale.setQuantity(mSaleItemsAdapter.saleList.get(i).getQuantity());
             sale.setProduct(mSaleItemsAdapter.saleList.get(i).getProduct());
 
         }
 
         realm.commitTransaction();
-        Toast.makeText(SalesActivity.this, "Dados Salvos",Toast.LENGTH_SHORT).show();
+        Toast.makeText(SalesActivity.this, "Dados Salvos", Toast.LENGTH_SHORT).show();
 
 // Limpa a lista de produtos e reinicia a venda
         mSaleItemsAdapter.saleList.clear();

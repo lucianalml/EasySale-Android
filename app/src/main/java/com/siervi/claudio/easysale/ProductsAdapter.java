@@ -1,9 +1,11 @@
 package com.siervi.claudio.easysale;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -36,16 +38,42 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         holder.tvNameProd.setText(String.valueOf(productList.get(position).getName()));
         holder.tvValorProd.setText("R$ " + String.valueOf(productList.get(position).getPrice()));
 
+        holder.btnEditProduct.setTag(new Integer(position));
+        holder.btnEditProduct.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                editProduct(v);
+            }
+        });
     }
+
+    private void editProduct(View v) {
+
+// Recupera a posição clicada
+        ImageButton btn = (ImageButton) v;
+        int clickedPos = ((Integer) btn.getTag()).intValue();
+
+// Recupera o produto selecionado
+        Product product = productList.get(clickedPos);
+
+// Chama a tela de edição para o produto selecionado
+        Intent intent = new Intent(v.getContext(), EditProductActivity.class);
+        intent.putExtra("NOME", product.getName());
+        intent.putExtra("PRECO", String.valueOf(product.getPrice()));
+        v.getContext().startActivity(intent);
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tvNameProd, tvValorProd;
-
+        public ImageButton btnEditProduct;
         public ViewHolder(View view) {
             super(view);
             tvNameProd = (TextView) view.findViewById(R.id.tv_name_prod);
             tvValorProd = (TextView) view.findViewById(R.id.tv_valor_prod);
+            btnEditProduct = (ImageButton) view.findViewById(R.id.btn_edit_prod);
         }
     }
 

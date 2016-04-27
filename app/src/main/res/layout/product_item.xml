@@ -36,12 +36,11 @@
         android:textSize="15sp"
         android:layout_below="@+id/tv_name_prod" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="90dp"
+    <ImageButton
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Editar"
         android:id="@+id/btn_edit_prod"
+        android:src="@android:drawable/ic_menu_edit"
         android:layout_alignParentLeft="false"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true" />

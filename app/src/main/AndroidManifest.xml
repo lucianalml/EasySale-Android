@@ -13,22 +13,35 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".SalesActivity" />
-        <activity android:name=".AddProductActivity" />
+        <activity android:name=".SalesActivity"
+            android:label="@string/tit_vendas"
+            android:parentActivityName=".MainActivity"></activity>
 
         <activity
             android:name=".ReportActivity"
-            android:parentActivityName=".MainActivity"
-            android:label="@string/tit_sales_report" />
+            android:label="@string/tit_sales_report"
+            android:parentActivityName=".MainActivity" />
 
-        <activity android:name=".ListProductActivity"
-            android:parentActivityName=".MainActivity"
-            android:label="@string/tit_list_products" >
+        <activity
+            android:name=".ListProductActivity"
+            android:label="@string/tit_list_products"
+            android:parentActivityName=".MainActivity"></activity>
+
+        <activity
+            android:name=".AddProductActivity"
+            android:label="@string/tit_add_products"
+            android:parentActivityName=".ListProductActivity" />
+
+        <activity android:name=".EditProductActivity"
+            android:label="@string/tit_edit_products"
+            android:parentActivityName=".ListProductActivity">
         </activity>
+
 
     </application>
 
