@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -38,16 +39,31 @@ public class ReportSalesAdapter extends RecyclerView.Adapter<ReportSalesAdapter.
         holder.v_txt_itemName.setText(saleList.get(position).getProduct().getName());
         holder.v_txt_qtd.setText(String.valueOf(saleList.get(position).getQuantity()));
 
+// Formata a data
+        String newDateStr = "";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+        if (saleList.get(position).getDate() != null) {
+            newDateStr = dateFormat.format(saleList.get(position).getDate());
+        }
+
+        holder.v_txt_dt_venda.setText(newDateStr);
+
+// Calcula o valor total dos itens
+        double valor = saleList.get(position).getQuantity() * saleList.get(position).getProduct().getPrice();
+        holder.v_txt_valor.setText(String.valueOf(valor));
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView v_txt_id, v_txt_itemName, v_txt_qtd;
+        public TextView v_txt_id, v_txt_dt_venda, v_txt_itemName, v_txt_qtd, v_txt_valor;
 
         public ViewHolder(View view) {
             super(view);
             v_txt_id = (TextView) view.findViewById(R.id.txt_id);
+            v_txt_dt_venda = (TextView) view.findViewById(R.id.txt_dt_venda);
             v_txt_itemName = (TextView) view.findViewById(R.id.txt_itemName);
             v_txt_qtd = (TextView) view.findViewById(R.id.txt_qtd);
+            v_txt_valor = (TextView) view.findViewById(R.id.txt_valor);
 
         }
     }

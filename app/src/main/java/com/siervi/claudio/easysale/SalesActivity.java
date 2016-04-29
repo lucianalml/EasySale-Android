@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.List;
 
 import io.realm.Realm;
@@ -64,6 +65,13 @@ public class SalesActivity extends AppCompatActivity {
 
     }
 
+// Fecha instancia do real
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
+
 // Salva os itens vendidos no banco de dados
     public void confirmSale(View view) {
 
@@ -103,13 +111,14 @@ public class SalesActivity extends AppCompatActivity {
             }
         });
 
-// Create the AlertDialog
+// Exibe o alerta de confirmação
         AlertDialog dialog = builder.create();
         dialog.show();
 
     }
 
     private void salvarVenda() {
+        Calendar c = Calendar.getInstance();
 
         // Recupera o próximo id
         int saleId = 1;
@@ -123,20 +132,15 @@ public class SalesActivity extends AppCompatActivity {
             sale.setId(saleId);
             sale.setQuantity(mSaleItemsAdapter.saleList.get(i).getQuantity());
             sale.setProduct(mSaleItemsAdapter.saleList.get(i).getProduct());
+            sale.setDate(c.getTime());
         }
 
         realm.commitTransaction();
         Toast.makeText(SalesActivity.this, "Dados Salvos", Toast.LENGTH_SHORT).show();
 
-// Limpa a lista de produtos e reinicia a venda
+// Limpa a lista da venda e reinicia o processo
         mSaleItemsAdapter.saleList.clear();
         mSaleItemsAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        realm.close(); // close Realm when done
     }
 
 }
