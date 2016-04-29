@@ -1,6 +1,7 @@
 package com.siervi.claudio.easysale;
 
 import android.app.Application;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -18,5 +19,7 @@ public class EasySale extends Application {
         RealmConfiguration realmConfig = new RealmConfiguration.Builder(getApplicationContext()).build();
 //        Realm.deleteRealm(realmConfig);
         Realm.setDefaultConfiguration(realmConfig);
+
+
     }
 }
