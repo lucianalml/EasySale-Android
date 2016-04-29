@@ -32,7 +32,7 @@ public class ListProductActivity extends AppCompatActivity {
 
         realm = Realm.getDefaultInstance();
 
-        products = realm.where(Product.class).findAll();
+        products = realm.where(Product.class).equalTo("ativo",true).findAll();
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);

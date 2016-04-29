@@ -59,8 +59,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
 // Chama a tela de edição para o produto selecionado
         Intent intent = new Intent(v.getContext(), EditProductActivity.class);
-        intent.putExtra("NOME", product.getName());
-        intent.putExtra("PRECO", String.valueOf(product.getPrice()));
+        intent.putExtra("ID", String.valueOf(product.getId()));
         v.getContext().startActivity(intent);
     }
 

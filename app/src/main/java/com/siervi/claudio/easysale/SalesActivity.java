@@ -35,8 +35,7 @@ public class SalesActivity extends AppCompatActivity {
 
 // Recupera todos os produtos cadastrados
         realm = Realm.getDefaultInstance();
-        products = realm.where(Product.class).findAll();
-
+        products = realm.where(Product.class).equalTo("ativo",true).findAll();
 
 // Determina os atributos da RecyclerView
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());

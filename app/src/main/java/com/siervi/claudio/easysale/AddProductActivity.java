@@ -52,14 +52,22 @@ public class AddProductActivity extends AppCompatActivity {
 
     // save a new object
     private  void registerProduct(View view){
+
+// Recupera proximo id
+        int id = 1;
+        if (! realm.where(Product.class).findAll().isEmpty() ) {
+            id = realm.where(Product.class).max("id").intValue() + 1;
+        }
+
         try{
 
             realm.beginTransaction();
 
             Product product = realm.createObject(Product.class);
-
+            product.setId(id);
             product.setName(edtProductName.getText().toString());
             product.setPrice(Double.parseDouble(edtProductPrice.getText().toString()));
+            product.setAtivo(true);
 
             realm.commitTransaction();
 

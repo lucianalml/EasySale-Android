@@ -7,13 +7,19 @@ import io.realm.annotations.PrimaryKey;
 public class Product extends RealmObject {
 
     @PrimaryKey
-    private int prod_id;
+    private int id;
 
     private String name;
-
     private double price;
-
     private boolean ativo;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public double getPrice() {
         return price;
@@ -30,4 +36,14 @@ public class Product extends RealmObject {
     public void setName(String name) {
         this.name = name;
     }
+
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
 }

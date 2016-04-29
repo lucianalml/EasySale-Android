@@ -19,22 +19,24 @@ public class EditProductActivity extends AppCompatActivity {
     EditText edtProductName, edtProductPrice;
     private Realm realm;
 
-    String nome, preco;
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_product);
 
-// Recupera dados do produto para edição
+        realm = Realm.getDefaultInstance();
+
+// Recupera dados do produto que está sendo editado
         Intent intent = getIntent();
-        nome = intent.getStringExtra("NOME");
-        preco = intent.getStringExtra("PRECO");
+        int id = Integer.parseInt(intent.getStringExtra("ID"));
+
+        product = realm.where(Product.class).equalTo("id",id).findFirst();
 
         setUI();
         setActions();
 
-        realm = Realm.getDefaultInstance();
 
     }
 
@@ -51,9 +53,9 @@ public class EditProductActivity extends AppCompatActivity {
         edtProductName = (EditText) findViewById(R.id.edt_ProductName);
         edtProductPrice = (EditText) findViewById(R.id.edt_ProductPrice);
 
-// Atribui os dados
-        edtProductName.setText(nome);
-        edtProductPrice.setText(preco);
+// Atribui os textos
+        edtProductName.setText(product.getName());
+        edtProductPrice.setText(String.valueOf(product.getPrice()));
     }
 
 // Atribui as ações
@@ -97,16 +99,13 @@ public class EditProductActivity extends AppCompatActivity {
 
     private void eliminarProduto() {
 
-        // Recupera o produto do banco de dados
-        Product product = realm.where(Product.class).equalTo("name",nome).findFirst();
-
 // Elimina
 
         realm.beginTransaction();
-        product.removeFromRealm();
+        product.setAtivo(false);
         realm.commitTransaction();
 
-        Toast.makeText(EditProductActivity.this, nome + " eliminado.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditProductActivity.this, edtProductName.getText() + " eliminado.", Toast.LENGTH_SHORT).show();
 
         finish();
 
@@ -116,9 +115,6 @@ public class EditProductActivity extends AppCompatActivity {
     private  void registerProduct(View view){
         try{
 
-// Recupera o produto do banco de dados
-            Product product = realm.where(Product.class).equalTo("name",nome).findFirst();
-
             realm.beginTransaction();
 
 // Atualiza os dados
@@ -127,8 +123,7 @@ public class EditProductActivity extends AppCompatActivity {
 
             realm.commitTransaction();
 
-            Product produto = realm.where(Product.class).equalTo("name",edtProductName.getText().toString()).findFirst();
-            Toast.makeText(EditProductActivity.this, produto.getName() + " atualizado.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProductActivity.this, edtProductName.getText() + " atualizado.", Toast.LENGTH_SHORT).show();
 
             finish();
 
