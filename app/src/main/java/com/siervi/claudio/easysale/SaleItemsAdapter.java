@@ -53,6 +53,7 @@ public class SaleItemsAdapter extends RecyclerView.Adapter<SaleItemsAdapter.View
         } else {
             holder.productQuantity.setText("Qtd: 0");
         }
+
         holder.precoUni.setText("R$ " + String.valueOf(product.getPrice()));
 
         holder.sumProducts.setTag(Integer.valueOf(position));
