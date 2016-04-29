@@ -44,7 +44,7 @@
     <string name="st_valor">Valor</string>
     <string name="st_excluir">Excluir</string>
     <string name="st_soma">+</string>
-
+    <string name="st_editar">Editar</string>
     <string name="st_valor_produto">R$ %s</string>
 
 

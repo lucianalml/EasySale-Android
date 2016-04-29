@@ -45,7 +45,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
         holder.tvValorProd.setText(valor_prod);
 
-        holder.btnEditProduct.setTag(new Integer(position));
+        holder.btnEditProduct.setTag(Integer.valueOf(position));
         holder.btnEditProduct.setOnClickListener(new View.OnClickListener() {
 
             @Override

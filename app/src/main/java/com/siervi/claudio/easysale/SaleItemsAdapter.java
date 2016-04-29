@@ -55,7 +55,7 @@ public class SaleItemsAdapter extends RecyclerView.Adapter<SaleItemsAdapter.View
         }
         holder.precoUni.setText("R$ " + String.valueOf(product.getPrice()));
 
-        holder.sumProducts.setTag(new Integer(position));
+        holder.sumProducts.setTag(Integer.valueOf(position));
         holder.sumProducts.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -64,7 +64,7 @@ public class SaleItemsAdapter extends RecyclerView.Adapter<SaleItemsAdapter.View
             }
         });
 
-        holder.removeProducts.setTag(new Integer(position));
+        holder.removeProducts.setTag(Integer.valueOf(position));
         holder.removeProducts.setOnClickListener(new View.OnClickListener() {
 
             @Override
