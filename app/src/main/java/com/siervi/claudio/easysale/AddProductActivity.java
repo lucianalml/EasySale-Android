@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import io.realm.Realm;
@@ -16,7 +16,7 @@ import io.realm.Realm;
 
 public class AddProductActivity extends AppCompatActivity {
 
-    ImageButton btnRegisterProduct;
+    Button btnRegisterProduct;
     EditText edtProductName, edtProductPrice;
     private Realm realm;
 
@@ -37,7 +37,7 @@ public class AddProductActivity extends AppCompatActivity {
     }
     // define buttons
     private void setUI() {
-        btnRegisterProduct = (ImageButton) findViewById(R.id.btn_RegisterProduct);
+        btnRegisterProduct = (Button) findViewById(R.id.btn_RegisterProduct);
         edtProductName = (EditText) findViewById(R.id.edt_ProductName);
         edtProductPrice = (EditText) findViewById(R.id.edt_ProductPrice);
     }

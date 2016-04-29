@@ -35,7 +35,6 @@ public class ReportSalesAdapter extends RecyclerView.Adapter<ReportSalesAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        holder.v_txt_id.setText(String.valueOf(saleList.get(position).getId()));
         holder.v_txt_itemName.setText(saleList.get(position).getProduct().getName());
         holder.v_txt_qtd.setText(String.valueOf(saleList.get(position).getQuantity()));
 
@@ -55,11 +54,10 @@ public class ReportSalesAdapter extends RecyclerView.Adapter<ReportSalesAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView v_txt_id, v_txt_dt_venda, v_txt_itemName, v_txt_qtd, v_txt_valor;
+        public TextView v_txt_dt_venda, v_txt_itemName, v_txt_qtd, v_txt_valor;
 
         public ViewHolder(View view) {
             super(view);
-            v_txt_id = (TextView) view.findViewById(R.id.txt_id);
             v_txt_dt_venda = (TextView) view.findViewById(R.id.txt_dt_venda);
             v_txt_itemName = (TextView) view.findViewById(R.id.txt_itemName);
             v_txt_qtd = (TextView) view.findViewById(R.id.txt_qtd);

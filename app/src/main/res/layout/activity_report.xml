@@ -7,50 +7,42 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/header">
 
         <TextView
-            android:id="@+id/header_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="ID"
-            android:layout_weight="1" />
-
-        <TextView
             android:id="@+id/header_dt_venda"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Data"
-            android:layout_weight="1" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/header_item_name"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Produto"
-            android:layout_weight="2" />
+            android:layout_weight="1"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/header_qtd"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Qtd."
-            android:layout_weight="1" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/header_valor"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Valor"
-            android:layout_weight="1" />
-
+            android:textStyle="bold" />
 
     </LinearLayout>
 
