@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome do Produto"
+        android:text="@string/st_descr_prod"
         android:id="@+id/tv_name_prod"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -27,7 +27,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Preço"
+        android:text="@string/st_preco"
         android:id="@+id/tv_valor_prod"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="false"
@@ -44,6 +44,7 @@
         android:src="@android:drawable/ic_menu_edit"
         android:layout_alignParentLeft="false"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:contentDescription="Editar" />
 
 </RelativeLayout>

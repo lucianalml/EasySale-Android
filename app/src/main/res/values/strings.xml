@@ -33,4 +33,19 @@
     <string name="tit_edit_products">Editar Produto</string>
     <string name="tit_vendas">Registro de Vendas</string>
 
+    <string name="st_descr_prod">Nome do Produto</string>
+    <string name="st_data">Data</string>
+    <string name="st_subtrai">-</string>
+    <string name="st_produto">Produto</string>
+    <string name="st_preco">Preço</string>
+    <string name="st_qtd">Qtd.</string>
+    <string name="st_reais">R$</string>
+    <string name="st_salvar">Salvar</string>
+    <string name="st_valor">Valor</string>
+    <string name="st_excluir">Excluir</string>
+    <string name="st_soma">+</string>
+
+    <string name="st_valor_produto">R$ %s</string>
+
+
 </resources>

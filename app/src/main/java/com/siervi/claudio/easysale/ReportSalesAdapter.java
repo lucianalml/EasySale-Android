@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Classe para listar os itens vendidos
@@ -40,7 +41,7 @@ public class ReportSalesAdapter extends RecyclerView.Adapter<ReportSalesAdapter.
 
 // Formata a data
         String newDateStr = "";
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy", Locale.getDefault());
         if (saleList.get(position).getDate() != null) {
             newDateStr = dateFormat.format(saleList.get(position).getDate());
         }

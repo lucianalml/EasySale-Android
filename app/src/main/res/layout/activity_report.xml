@@ -16,7 +16,7 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Data"
+            android:text="@string/st_data"
             android:textStyle="bold" />
 
         <TextView
@@ -24,7 +24,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Produto"
+            android:text="@string/st_produto"
             android:layout_weight="1"
             android:textStyle="bold" />
 
@@ -33,7 +33,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Qtd."
+            android:text="@string/st_qtd"
             android:textStyle="bold" />
 
         <TextView
@@ -41,7 +41,7 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Valor"
+            android:text="@string/st_valor"
             android:textStyle="bold" />
 
     </LinearLayout>

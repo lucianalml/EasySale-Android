@@ -1,5 +1,6 @@
 package com.siervi.claudio.easysale;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,9 +17,11 @@ import java.util.List;
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHolder> {
 
     private List<Product> productList;
+    private Context context;
 
-    public ProductsAdapter(List<Product> products) {
+    public ProductsAdapter(Context current, List<Product> products) {
         this.productList = products;
+        this.context = current;
     }
 
     @Override
@@ -36,7 +39,11 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         holder.tvNameProd.setText(String.valueOf(productList.get(position).getName()));
-        holder.tvValorProd.setText("R$ " + String.valueOf(productList.get(position).getPrice()));
+
+        String valor_prod = String.format(context.getResources().getString(R.string.st_valor_produto),
+                productList.get(position).getPrice());
+
+        holder.tvValorProd.setText(valor_prod);
 
         holder.btnEditProduct.setTag(new Integer(position));
         holder.btnEditProduct.setOnClickListener(new View.OnClickListener() {
