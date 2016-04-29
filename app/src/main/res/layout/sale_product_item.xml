@@ -56,5 +56,14 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" />
 
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="R$"
+        android:id="@+id/txt_preco_uni"
+        android:layout_below="@+id/txt_productName"
+        android:layout_toLeftOf="@+id/btn_sumProducts"
+        android:layout_toStartOf="@+id/btn_sumProducts" />
+
 
 </RelativeLayout>

@@ -124,6 +124,8 @@ public class SalesActivity extends AppCompatActivity {
         if (! realm.where(Sale.class).findAll().isEmpty() ) {
             saleId = realm.where(Sale.class).max("id").intValue() + 1;
         }
+// Calcula o valor total
+        double valor_total = 0;
 
         realm.beginTransaction();
         for (int i = 0; i < mSaleItemsAdapter.saleList.size(); i++) {
@@ -132,6 +134,9 @@ public class SalesActivity extends AppCompatActivity {
             sale.setQuantity(mSaleItemsAdapter.saleList.get(i).getQuantity());
             sale.setProduct(mSaleItemsAdapter.saleList.get(i).getProduct());
             sale.setDate(c.getTime());
+            valor_total = mSaleItemsAdapter.saleList.get(i).getQuantity()
+                                * mSaleItemsAdapter.saleList.get(i).getProduct().getPrice();
+            sale.setValor_total(valor_total);
         }
 
         realm.commitTransaction();

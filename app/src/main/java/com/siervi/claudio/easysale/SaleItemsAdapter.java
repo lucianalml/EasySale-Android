@@ -49,10 +49,11 @@ public class SaleItemsAdapter extends RecyclerView.Adapter<SaleItemsAdapter.View
 // Se o produto não foi selecionado nenhuma vez seta quantidade 0
 // Senão recupera quantidade da venda
         if (sale != null){
-           holder.productQuantity.setText(String.valueOf(sale.getQuantity()));
+           holder.productQuantity.setText("Qtd: " + String.valueOf(sale.getQuantity()));
         } else {
-            holder.productQuantity.setText("0");
+            holder.productQuantity.setText("Qtd: 0");
         }
+        holder.precoUni.setText("R$ " + String.valueOf(product.getPrice()));
 
         holder.sumProducts.setTag(new Integer(position));
         holder.sumProducts.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +82,6 @@ public class SaleItemsAdapter extends RecyclerView.Adapter<SaleItemsAdapter.View
         for (int i = 0; i < saleList.size(); i++) {
             if (saleList.get(i).getProduct().getName().equals(name)) {
                 return saleList.get(i);
-
             }
         }
         return sale;
@@ -168,13 +168,14 @@ public class SaleItemsAdapter extends RecyclerView.Adapter<SaleItemsAdapter.View
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView productName, productQuantity;
+        public TextView productName, productQuantity, precoUni;
         public Button sumProducts, removeProducts;
 
         public ViewHolder(View view) {
             super(view);
             productName = (TextView) view.findViewById(R.id.txt_productName);
             productQuantity = (TextView) view.findViewById(R.id.txt_quantity);
+            precoUni = (TextView) view.findViewById(R.id.txt_preco_uni);
             sumProducts = (Button) view.findViewById(R.id.btn_sumProducts);
             removeProducts = (Button) view.findViewById(R.id.btn_removeProducts);
         }

@@ -47,9 +47,8 @@ public class ReportSalesAdapter extends RecyclerView.Adapter<ReportSalesAdapter.
 
         holder.v_txt_dt_venda.setText(newDateStr);
 
-// Calcula o valor total dos itens
-        double valor = saleList.get(position).getQuantity() * saleList.get(position).getProduct().getPrice();
-        holder.v_txt_valor.setText(String.valueOf(valor));
+// Valor total do item
+        holder.v_txt_valor.setText(String.valueOf(saleList.get(position).getValor_total()));
 
     }
 

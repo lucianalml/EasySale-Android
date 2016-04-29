@@ -15,7 +15,17 @@ public class Sale extends RealmObject {
 
     private Product product;
     private int quantity;
+    private double valor_total;
+
     private Date date;
+
+    public double getValor_total() {
+        return valor_total;
+    }
+
+    public void setValor_total(double valor_total) {
+        this.valor_total = valor_total;
+    }
 
     public int getId() {
         return id;
